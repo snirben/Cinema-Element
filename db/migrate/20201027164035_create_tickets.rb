@@ -1,11 +1,11 @@
 class CreateTickets < ActiveRecord::Migration[6.0]
   def change
     create_table :tickets do |t|
-      t.intger :user_id,null:false
-      t.intger :movie_id,null:false
-      t.intger :screen_id,null:false
-      t.intger :seat_id,null:false
-      t.intger :hall_id,null:false
+      t.integer :user_id,null:false
+      t.integer :movie_id,null:false
+      t.integer :screen_id,null:false
+      t.integer :seat_id,null:false
+      t.integer :hall_id,null:false
       t.timestamps
     end
   end
