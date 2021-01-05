@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_12_165417) do
+ActiveRecord::Schema.define(version: 2021_01_04_163341) do
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer "movie_id"
@@ -36,9 +36,14 @@ ActiveRecord::Schema.define(version: 2020_12_12_165417) do
     t.decimal "price", precision: 8, scale: 2
     t.decimal "old_price", precision: 8, scale: 2
     t.string "category"
-    t.string "image"
+    t.string "director"
+    t.string "rating"
     t.text "description"
     t.integer "movie_length"
+    t.string "blob_file_name"
+    t.string "blob_content_type"
+    t.bigint "blob_file_size"
+    t.datetime "blob_updated_at"
   end
 
   create_table "screens", force: :cascade do |t|
@@ -82,6 +87,7 @@ ActiveRecord::Schema.define(version: 2020_12_12_165417) do
     t.string "last_sign_in_ip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

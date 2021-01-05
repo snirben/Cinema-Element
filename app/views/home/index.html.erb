@@ -1,11 +1,4 @@
 <div class="container bg-light">
-<div class="row pt-lg-5">
-  <div class="col-sm logo">
-    <img src="" class="img-fluid" alt="...">
-  </div>
-  <div class="col login">
-  <p> signin/signup</p>
-  </div>
 
   <div class="row main">
     <div class="col-md-8 movies-list">
@@ -14,12 +7,16 @@
     <div class="col-md-4 movie-image">
    <img class="img-fluid" src="images/logo.png">
     </div>
+
     <div class="col-md-8">
       <div class="row movie-title"> <%= movie.title%> </div>
-      <div class="row movie-sessions">
+      <div class="row d-flex movie-sessions">
+        <ul>
         <% movie.screens.each do |screen| %>
-        <span><%=screen.screen_at.strftime("%H:%m") %> </span>
+            <li class="d-inline-block"><a class="p-2 bg-secondary text-white" id ><%=screen.screen_at.strftime("%H:%m") %></a></li>
         <%end %>
+        </ul>
+
       </div>
 
       </div>

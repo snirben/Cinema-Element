@@ -6,7 +6,7 @@ class AddfieldstoMovieTable < ActiveRecord::Migration[6.0]
     add_column :movies,:category ,:string
     add_column :movies ,:director ,:string
     add_column :movies ,:rating ,:string
-    add_column :movies ,:description ,:string
+    add_column :movies ,:description ,:text
     add_column :movies ,:movie_length ,:integer
 
   end
