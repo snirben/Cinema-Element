@@ -4,6 +4,7 @@ class CreateHalls < ActiveRecord::Migration[6.0]
       t.string :title,:default=>""
       t.integer :hall_num,null:false
       t.integer :floor,:default=>0
+      t.integer :seats,:default=>0
       t.timestamps
     end
   end

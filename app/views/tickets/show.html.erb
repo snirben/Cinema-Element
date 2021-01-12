@@ -1,0 +1,25 @@
+
+
+
+
+<h3> Buy Seats</h3>
+
+<table>
+  <thead>
+  <tr>
+    <%(@screen.hall.seats/5).times do |i| %>
+    <td> <%= i+1 %> </td>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <%(@screen.hall.seats).times do |i| %>
+    <td> <%= i+1 %> </td>
+   <%= form_with model: @order_item do |f| %>
+    <%= f.hidden_field :seat_id , :value => i%>
+    <%= f.submit 'Order Seat' %>
+    <% end %>
+
+  <% end %>
+  </tbody>
+</table>

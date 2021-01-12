@@ -5,7 +5,8 @@
       <% @movies.each do |movie| %>
   <div class="row movie-section border-bottom">
     <div class="col-md-4 movie-image">
-   <img class="img-fluid" src="images/logo.png">
+    <!-- <%= image_tag(movie.blob.url ,:class=>"img-fluid") %> -->
+
     </div>
 
     <div class="col-md-8">
@@ -13,7 +14,7 @@
       <div class="row d-flex movie-sessions">
         <ul>
         <% movie.screens.each do |screen| %>
-            <li class="d-inline-block"><a class="p-2 bg-secondary text-white" id ><%=screen.screen_at.strftime("%H:%m") %></a></li>
+            <%= link_to screen.screen_at&.strftime("%H:%m") , tickets_path(movie_id:movie.id,screen_id: screen.id),:class=>"p-2 bg-secondary text-white d-inline-block" %>
         <%end %>
         </ul>
 

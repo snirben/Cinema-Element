@@ -1,0 +1,27 @@
+<%= form_for @hall do |f|%>
+  <div class="form-group">
+    <% if @hall.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@hall.errors.count, "error") %> prohibited this movie from being saved:</h2>
+        <ul>
+          <% @hall.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hall_num %><br>
+      <%= f.text_field :hall_num, class: "form-control", placeholder: "Hall Number" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>
