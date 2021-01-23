@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
   end
 
   def edit
+    @movie = Movie.find(params[:id])
   end
 
   def create
@@ -25,6 +26,8 @@ class MoviesController < ApplicationController
   end
 
   def update
+    @movie = Movie.find(params[:id])
+    @movie.old_price = @movie.price
     if @movie.update(movie_params)
       redirect_to @movie, notice: 'Movie was successfully updated.'
     else
@@ -33,8 +36,9 @@ class MoviesController < ApplicationController
   end
 
   def destroy
+    @movie = Movie.find(params[:id])
     @movie.destroy
-    redirect_to redirect_to movies_path
+    redirect_to movies_path
   end
 
   private
@@ -46,6 +50,5 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :description, :movie_length,
                                          :age_limit, :price, :image,
                                          :user_id, :age_limit , :old_price, :category,:blob)
-  end
-
+    end
 end

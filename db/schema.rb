@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_05_121922) do
+ActiveRecord::Schema.define(version: 2021_01_15_205353) do
+
+  create_table "categories", force: :cascade do |t|
+    t.text "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "feedbacks", force: :cascade do |t|
     t.integer "movie_id"
@@ -34,13 +40,15 @@ ActiveRecord::Schema.define(version: 2021_01_05_121922) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "age_limit"
-    t.decimal "price", precision: 8, scale: 2
-    t.decimal "old_price", precision: 8, scale: 2
+    t.integer "price", default: 0
+    t.integer "old_price", default: 0
     t.string "category"
     t.string "director"
     t.string "rating"
     t.text "description"
     t.integer "movie_length"
+    t.integer "category_id"
+    t.integer "booked_counter"
     t.string "blob_file_name"
     t.string "blob_content_type"
     t.bigint "blob_file_size"
@@ -49,6 +57,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_121922) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer "seat_id"
+    t.integer "order_id"
     t.decimal "unit_price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -57,6 +66,8 @@ ActiveRecord::Schema.define(version: 2021_01_05_121922) do
   create_table "orders", force: :cascade do |t|
     t.decimal "subtotal"
     t.decimal "total"
+    t.integer "user_id"
+    t.text "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -72,6 +83,10 @@ ActiveRecord::Schema.define(version: 2021_01_05_121922) do
   create_table "seats", force: :cascade do |t|
     t.boolean "is_taken", default: false, null: false
     t.integer "hall_id", null: false
+    t.datetime "taken_at"
+    t.integer "seat_num"
+    t.integer "ticket_id"
+    t.integer "screen_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

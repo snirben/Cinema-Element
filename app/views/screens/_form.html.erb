@@ -1,0 +1,37 @@
+<%= form_for @screen do |f|%>
+  <div class="form-group">
+    <% if @screen.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@screen.errors.count, "error") %> prohibited this movie from being saved:</h2>
+        <ul>
+          <% @screen.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :screen_id %><br>
+      <%= f.hidden_field :screen_id,value: params[:screen_id], class: "form-control", placeholder: "id" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :movie_id %><br>
+      <%= f.text_field :movie_id,value: params[:movie_id], class: "form-control", placeholder: "id" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :screen_at %><br>
+      <%= f.datetime_field :screen_at, class: "form-control", placeholder: "Screen At" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hall_id %><br>
+      <%= f.collection_select :hall_id, Hall.all , :id ,:title %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  </div>
+<% end %>

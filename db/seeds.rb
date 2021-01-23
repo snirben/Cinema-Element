@@ -5,12 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+image_data = File.open('/Users/snirbenyosef/Downloads/image.jpg')
 User.create!(email:'snirben@gmail.com',password:'5109437',username:'snirben')
 
 
 13.times do |i|
-  Movie.create!(title:'test5',age_limit:i,price:i)
+  Movie.create!(title:'test5',age_limit:i,price:i,blob:image_data)
   Hall.create!(title:i, hall_num:i, floor:i, seats: 20)
 
 

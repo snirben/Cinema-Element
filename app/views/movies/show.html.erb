@@ -1,10 +1,56 @@
+
+<%= image_tag(@movie.blob.url ,:size => "400x400",:class=>"img-fluid") %>
 <p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
+<p class="d-inline" style="color:red ;font-size: large;"><span style="color:black; font-size: x-large;"><%= @movie.title %></span> <%= @movie.age_limit %>+</p>
 </p>
 <p>
   <strong>Description:</strong>
   <%= @movie.description %>
 </p>
+
+<p>
+  <strong>Movie Length:</strong>
+  <%= @movie.movie_length %> Mintues
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%if @movie.category.present?  %>
+  <%= Category.find(@movie.category.to_i).name %>
+    <%else %>
+  None
+    <%end %>
+</p>
+
+<p>
+  Last Screen:
+  <%=  @movie.screens.order(:screen_at).last.screen_at %>
+</p>
+
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
+<br>
+<%=button_to  'Create New Screen', add_screen_path(movie_id:@movie.id) ,method: :new ,:class=>"btn btn-success"  %>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Date</th>
+    <th scope="col">Hall</th>
+    <th scope="col">Remove</th>
+    <th scope="col">Update</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @movie.screens.each do |screen| %>
+  <tr>
+    <th scope="row"><%= screen.id %></th>
+    <td><%= screen.screen_at %></td>
+    <td><%= screen.hall_id %></td>
+    <td> <%=button_to  'Remove', remove_screen_path(movie_id:@movie.id,screen_id:screen.id) ,method: :delete,:class=>"btn btn-danger"  %></td>
+    <td> <%=button_to  'Update', edit_screen_path(screen_id:screen,movie_id:@movie.id) , :class=>"btn btn-warning"  %></td>
+
+  </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 col-md-offset-1">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th>Movie</th>
+          <th>Seat</th>
+          <th>Hall</th>
+          <th class="text-center">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @order_items.each do |item| %>
+        <tr>
+          <td class="col-sm-8 col-md-6">
+            <div class="media">
+              <a class="thumbnail pull-left" href="#"> <%= image_tag(item.seat.screen.movie.blob.url ,:size => "150x150",:class=>"img-fluid") %> </a>
+              <div class="media-body">
+                <h4 class="media-heading"><a href="#"> <%= item.seat.screen.movie.title %> </a></h4>
+                <span>Date: </span><span class="text-success"><strong><%= item.seat.screen.screen_at %></strong></span>
+              </div>
+            </div></td>
+          <td class="col-sm-1 col-md-1 text-center"><strong><%= item.seat.seat_num %></strong></td>
+          <td class="col-sm-1 col-md-1 text-center"><strong><%= item.seat.hall.hall_num %></strong></td>
+          <td class="col-sm-1 col-md-1 text-center"><strong><%= item.seat.screen.movie.price %>₪</strong></td>
+          <td class="col-sm-1 col-md-1">
+            <%=button_to  'Remove', remove_from_cart_path(id: item.id) ,method: :delete,:class=>"btn btn-danger"  %>
+        </tr>
+        <%end %>
+        <tr>
+          <td>   </td>
+          <td>   </td>
+          <td>   </td>
+          <td><h3>Total</h3></td>
+          <td class="text-right"><h3><strong><%= @total %>₪</strong></h3></td>
+        </tr>
+        <tr>
+          <td>   </td>
+          <td>   </td>
+          <td>   </td>
+          <td>
+            <%= link_to  "Checkout", order_checkout_path,:class=>"btn btn-success"  %>
+
+
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -3,8 +3,13 @@
   <%= @hall.title %>
 </p>
 <p>
-  <strong>Description:</strong>
+  <strong>Floor:</strong>
   <%= @hall.floor %>
+</p>
+
+<p>
+  <strong>Number of Seats:</strong>
+  <%= @hall.seats %>
 </p>
 <%= link_to 'Edit', edit_hall_path(@hall) %> |
 <%= link_to 'Back', halls_path %>

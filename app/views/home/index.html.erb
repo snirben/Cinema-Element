@@ -1,30 +1,85 @@
 <div class="container bg-light">
+  <div class="btn-group m-4 align-content-center d-flex" role="group" aria-label="Basic example">
 
+    <%= form_tag '', :method => :get do %>
+     <%= button_tag 'Today', :value=>"#{ Date.today }"  , class: "btn btn-secondary"%>
+     <%= button_tag "#{ Date.today+1.day }", :value=>"#{ Date.today+1.day }"  , class: "btn btn-secondary"%>
+     <%= button_tag "#{ Date.today+2.day }", :value=>"#{ Date.today+2.day }"  , class: "btn btn-secondary"%>
+     <%= button_tag "#{ Date.today+3.day }", :value=>"#{ Date.today+3.day }"  , class: "btn btn-secondary"%>
+     <%= button_tag "#{ Date.today+4.day}", :value=>"#{ Date.today+4.day }"  , class: "btn btn-secondary"%>
+     <%= button_tag "#{ Date.today+5.day}", :value=>"#{ Date.today+5.day }"  , class: "btn btn-secondary"%>
+      <%= date_field_tag :customdate %>
+      <%= submit_tag 'Pick Custom Date' %>
+
+  <% end %>
+  </div>
   <div class="row main">
     <div class="col-md-8 movies-list">
+      <% if @movies.count == 0 %>
+        <p> No Movies At that Time</p>
+        <% end%>
       <% @movies.each do |movie| %>
   <div class="row movie-section border-bottom">
     <div class="col-md-4 movie-image">
-    <!-- <%= image_tag(movie.blob.url ,:class=>"img-fluid") %> -->
+    <%= image_tag(movie.blob.url ,:size => "150x100",:class=>"img-fluid") %>
 
     </div>
 
     <div class="col-md-8">
-      <div class="row movie-title"> <%= movie.title%> </div>
+      <div style="font-size: x-large" class="row movie-title d-flex"> <p><%= link_to movie.title , movie_path(movie)%>
+        <span style="color:red;font-size: smaller"><%=movie.age_limit%>+</span> </p> </div>
       <div class="row d-flex movie-sessions">
         <ul>
         <% movie.screens.each do |screen| %>
+            <%if screen.screen_at  < @start_date.end_of_day and screen.screen_at > @start_date.beginning_of_day %>
             <%= link_to screen.screen_at&.strftime("%H:%m") , tickets_path(movie_id:movie.id,screen_id: screen.id),:class=>"p-2 bg-secondary text-white d-inline-block" %>
-        <%end %>
+            <% end  %>
+
+          <%end %>
         </ul>
 
       </div>
+       <% if movie.old_price > movie.price %>
+       Price:  <del> <%= movie.old_price %>‎₪ </del> <%= movie.price %>‎₪
+      <% else %>
+       Price:  <%= movie.price %>‎₪
+        <%end %>
 
       </div>
     </div>
       <% end %>
     </div>
-    <div class="col-med-4 filters">
+    <div class="col-md-4 filters">
+      <%= form_tag '', :method => :get do %>
+      <%= submit_tag 'ONSALE' ,class: 'btn btn-danger'%>
+      <%end %>
+<br>
+
+      <p>Filter by </p>
+      <%= form_tag '', :method => :get do %>
+        <p> Category:       <%= select_tag "category", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category"%>
+        </p>
+        <p> From Price: <%= number_field_tag :from,value=0 %></p>
+        <p> To Price:  <%= number_field_tag :to,value=0 %></p>
+        <p> Date: <%= date_field_tag :date %></p>
+        <p> Time:  <%= time_field_tag :time %></p>
+        <%= submit_tag 'Find Me Movies' %>
+      <% end %>
+      <br>
+      <p> Order By</p>
+      <%= form_tag '', :method => :get do %>
+        <%= label_tag "price increase" %>
+        <%= radio_button_tag 'order', 'inc' %>
+
+        <%= label_tag "price decrease" %>
+        <%= radio_button_tag 'order', 'dec' %>
+
+        <%= label_tag "most popular" %>
+        <%= radio_button_tag 'order', 'pop' %>
+
+        <%= select_tag "cat", options_from_collection_for_select(Category.all, "id", "name"), prompt: "Select category"%>
+        <%= submit_tag 'order_sub' %>
+      <% end %>
     </div>
   </div>
 </div>

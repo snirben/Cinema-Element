@@ -14,11 +14,35 @@
       <%= f.label :title %><br>
       <%= f.text_field :title, class: "form-control", placeholder: "Title" %>
     </div>
+    <div class="field">
+      <%= f.label :age_limit %><br>
+      <%= f.number_field :age_limit, class: "form-control", placeholder: "Age limit" %>
+    </div>
 
     <div class="field">
-      <%= f.label :blob %><br>
-      <%= f.file_field :blob, class: "form-control", placeholder: "blob" %>
+      <%= f.label :price %><br>
+      <%= f.number_field :price, class: "form-control", placeholder: "Price" %>
     </div>
+    <div class="field">
+      <%= f.label :category %><br>
+      <%= f.collection_select :category, Category.all , :id ,:name %>
+      <%= link_to 'New Category', new_category_path %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_field :description, class: "form-control", placeholder: "description" %>
+    </div>
+    <div class="field">
+      <%= f.label :movie_length %><br>
+      <%= f.number_field :movie_length, class: "form-control", placeholder: "Movie Length (Hours)" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Poster %><br>
+      <%= f.file_field :blob, class: "form-control", placeholder: "Poster" %>
+    </div>
+
+
 
     <div class="actions">
       <%= f.submit %>
