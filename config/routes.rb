@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :buyfeedbacks
   resources :categories
   get 'order_items/create'
   get 'order_items/update'
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   get 'movies/:movie_id/screen/:screen_id/tickets', to: 'tickets#show', as: :tickets
   get 'order/:id', to: 'order#see_cart', as: :order_cart
   get 'order/:id/checkout', to: 'order#checkout', as: :order_checkout
-  get 'order/thankyou', to: 'order#thankyou', as: :thankyou
+  get 'buy/thankyou', to: 'buy#buy', as: :thankyou
 
   #Screen
   post 'movies/:movie_id/screen/update', to: 'screens#update', as: :update_screen

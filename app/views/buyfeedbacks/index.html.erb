@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Buyfeedbacks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Message</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buyfeedbacks.each do |buyfeedback| %>
+      <tr>
+        <td><%= buyfeedback.name %></td>
+        <td><%= buyfeedback.message %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Buyfeedback', new_buyfeedback_path %>

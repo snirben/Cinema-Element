@@ -8,20 +8,19 @@ class OrderController < ApplicationController
   end
 
   def checkout
-    if params[:commit]=="Buy"
-      redirect_to thankyou_path
+      @order = Order.find(params[:id])
+      @total= 0
+      @order_items=Order.find(session[:order_id]).order_items
+      @order_items.each do |item|
+        @total+= item.seat.screen.movie.price
     end
 
-    @order = Order.find(params[:id])
-    @total= 0
-    @order_items=Order.find(session[:order_id]).order_items
-    @order_items.each do |item|
-      @total+= item.seat.screen.movie.price
-    end
+
 
   end
+
   def thankyou
-    redirect_to order_thankyou_path
+    redirect_to thankyou_path
 
   end
 

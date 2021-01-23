@@ -1,0 +1,24 @@
+<%= form_with(model: buyfeedback, local: true) do |form| %>
+  <% if buyfeedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(buyfeedback.errors.count, "error") %> prohibited this buyfeedback from being saved:</h2>
+
+      <ul>
+        <% buyfeedback.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :name %><br>
+    <%= form.text_field :name, class: "form-control", placeholder: "Your Name" %>
+  </div>
+  <div class="field">
+    <%= form.label :message %><br>
+    <%= form.text_field :message, class: "form-control", placeholder: "message" %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

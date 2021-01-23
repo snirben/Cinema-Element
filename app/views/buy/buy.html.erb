@@ -1,0 +1,20 @@
+
+<% if @random%>
+<div class="jumbotron text-center">
+  <h1 class="display-3">Thank You!</h1>
+  <p class="lead"><strong>Please check your email</strong> for the movies ticket :)</p>
+  <hr>
+</div>
+<%else %>
+  <div class="jumbotron text-center">
+    <h1 style="color: red" class="display-3">Sorry, we colud not process the payment</h1>
+    <p class="lead"><strong>Please check your Creditcard,experssion date, or cvv</strong></p>
+    <hr>
+  </div>
+<%end %>
+
+<script>
+    setTimeout(function(){
+        window.location.href = '/';
+    }, 5000);
+</script>

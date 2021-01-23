@@ -24,7 +24,7 @@
 
 <p>
   Last Screen:
-  <%=  @movie.screens.order(:screen_at).last.screen_at %>
+  <%=  @movie&.screens.order(:screen_at).last&.screen_at %>
 </p>
 
 <%= link_to 'Edit', edit_movie_path(@movie) %> |

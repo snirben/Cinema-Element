@@ -1,0 +1,2 @@
+class Buyfeedback < ApplicationRecord
+end

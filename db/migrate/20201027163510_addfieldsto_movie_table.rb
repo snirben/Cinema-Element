@@ -9,6 +9,6 @@ class AddfieldstoMovieTable < ActiveRecord::Migration[6.0]
     add_column :movies ,:description ,:text
     add_column :movies ,:movie_length ,:integer
     add_column :movies ,:category_id ,:integer
-    add_column :movies , :booked_counter, :integer
+    add_column :movies , :booked_counter, :integer,:default => 0
   end
 end

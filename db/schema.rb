@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_15_205353) do
+ActiveRecord::Schema.define(version: 2021_01_23_153004) do
+
+  create_table "buyfeedbacks", force: :cascade do |t|
+    t.text "name"
+    t.text "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "categories", force: :cascade do |t|
     t.text "name"
@@ -48,7 +55,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_205353) do
     t.text "description"
     t.integer "movie_length"
     t.integer "category_id"
-    t.integer "booked_counter"
+    t.integer "booked_counter", default: 0
     t.string "blob_file_name"
     t.string "blob_content_type"
     t.bigint "blob_file_size"
@@ -82,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_01_15_205353) do
 
   create_table "seats", force: :cascade do |t|
     t.boolean "is_taken", default: false, null: false
+    t.boolean "is_free", default: true
     t.integer "hall_id", null: false
     t.datetime "taken_at"
     t.integer "seat_num"

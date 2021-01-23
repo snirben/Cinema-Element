@@ -1,6 +1,6 @@
 <div class="container bg-light">
   <div class="btn-group m-4 align-content-center d-flex" role="group" aria-label="Basic example">
-
+<%=session[:master_date] %>
     <%= form_tag '', :method => :get do %>
      <%= button_tag 'Today', :value=>"#{ Date.today }"  , class: "btn btn-secondary"%>
      <%= button_tag "#{ Date.today+1.day }", :value=>"#{ Date.today+1.day }"  , class: "btn btn-secondary"%>
@@ -32,7 +32,7 @@
         <ul>
         <% movie.screens.each do |screen| %>
             <%if screen.screen_at  < @start_date.end_of_day and screen.screen_at > @start_date.beginning_of_day %>
-            <%= link_to screen.screen_at&.strftime("%H:%m") , tickets_path(movie_id:movie.id,screen_id: screen.id),:class=>"p-2 bg-secondary text-white d-inline-block" %>
+            <%= link_to screen.screen_at&.strftime("%H:%M") , tickets_path(movie_id:movie.id,screen_id: screen.id),:class=>"p-2 bg-secondary text-white d-inline-block" %>
             <% end  %>
 
           <%end %>

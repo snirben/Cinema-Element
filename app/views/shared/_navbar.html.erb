@@ -21,7 +21,9 @@
             <%= link_to 'Halls', halls_path , class:'nav-link' %>
           </li>
           <% end %>
-
+          <li class="nav-item">
+            <%= link_to 'FeedBacks Of Buying', "http://localhost:3000/buyfeedbacks" ,class:'nav-link' %>
+          </li>
           <li class="nav-item">
             <%= link_to 'Account', destroy_user_session_path ,:method => :delete, class:'nav-link' %>
           </li>
@@ -30,6 +32,9 @@
           </li>
 
           <% else %>
+          <li class="nav-item">
+            <%= link_to 'FeedBacks Of Buying', "http://localhost:3000/buyfeedbacks",class:'nav-link'  %>          </li>
+
           <li class="nav-item">
             <%= link_to 'Register', new_user_registration_path , class:'nav-link' %>
 

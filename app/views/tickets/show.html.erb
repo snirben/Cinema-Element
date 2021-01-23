@@ -3,19 +3,16 @@
 
 
 <h3> Buy Seats</h3>
-
-<table>
-  <thead>
-  <tr>
-  </tr>
-  </thead>
-  <tbody>
+<h4> Hall: <%=@screen.hall.hall_num %></h4>
   <%(@screen.hall.seats).times do |i| %>
 
     <% if Seat.where(screen_id:params[:screen_id],seat_num:i+1).count >0 %>
-    <td> <span class="btn btn-danger disabled" >  <%= "buy seat #{i+1}" %></span> </td>
+
+    <span class="btn btn-danger disabled" >  <%= "buy seat #{i+1}" %></span>
+
 <%else %>
-      <td>  <%= link_to "buy seat #{i+1}", add_to_cart_path(seat_num:i+1), method: :post ,class: "btn btn-success" %>
+<div class="d-flex">
+       <%= link_to "buy seat #{i+1}", add_to_cart_path(seat_num:i+1), method: :post ,class: "btn btn-success" %>
       <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
         <input type="hidden" name="cmd" value="_xclick">
         <input type="hidden" name="business" value="snirben@gmail.com">
@@ -29,9 +26,9 @@
         <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
         <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
       </form>
-      </td>
+
+
+</div>
 
   <%end %>
   <% end %>
-  </tbody>
-</table>

@@ -20,7 +20,7 @@ class TicketsController < ApplicationController
     @screen = Screen.find(params[:screen_id])
     if @screen.seat.present?
     @screen.seat.each do |seat|
-      if seat.taken_at < (DateTime.now-10.minute)
+      if seat.taken_at < (DateTime.now-10.minute) and seat.is_free
         seat.delete
       end
     end

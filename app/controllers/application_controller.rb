@@ -17,6 +17,11 @@ class ApplicationController < ActionController::Base
   protected
 
   def after_sign_in_path_for(resource)
+    @order = Order.where(user_id:current_user.id,status:"ongoing").last
+    if @order
+    session[:order_id]=@order.id
+    end
+
     Order.find(session[:order_id]).update(user_id:current_user.id)
     root_path
   end
